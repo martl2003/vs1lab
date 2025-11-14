@@ -136,11 +136,25 @@ main{
 
 /* ### TODO ### Styles for Tagging component */
 
+#tag-form{
+  fieldset{
+    border-radius: 2%;
+    padding: 10px;
+  }
+  
+}
 /* ... your code here ... */
 
 
 /* ### TODO ### Styles for Discovery component */
 
+#discoveryFilterForm{
+  fieldset{
+    border-radius: 2%;
+    padding: 10px;
+  }
+  
+}
 /* ... your code here ... */
 
 
