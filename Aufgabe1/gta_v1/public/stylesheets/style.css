@@ -46,6 +46,41 @@ a {
 
 /* ### TODO ### Styles for other HTML elements */
 
+#tag-form label, .discovery__search label{
+  color: grey;
+  display: block;
+  margin-bottom: 1em;
+}
+
+fieldset{
+  padding: 1em;
+  margin-top: 0.5em;
+}
+
+.tagging input, .discovery input{
+  padding: 0.5em;
+  border: 0.1em solid grey;
+  width: clamp(50px, 40%, 200px);
+  display: block;
+  margin-bottom: 1em;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+li {
+  border: 1px solid grey;
+  padding: 0.5em;
+  margin-bottom: 0.5em;
+  border-radius: 0px;
+  background-color: lightgrey;
+  color: blue;
+}
+
+
 /* ... your code here ... */
 
 
@@ -136,7 +171,11 @@ main{
 
 /* ### TODO ### Styles for Tagging component */
 
-/* ... your code here ... */
+
+
+#longitude_input, #latitude_input {
+  background: gainsboro;
+}
 
 
 /* ### TODO ### Styles for Discovery component */
