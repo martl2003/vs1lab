@@ -60,7 +60,7 @@ fieldset{
 .tagging input, .discovery input{
   padding: 0.5em;
   border: 0.1em solid grey;
-  width: clamp(50px, 40%, 200px);
+  width: clamp(100px, 40%, 100%);
   display: block;
   margin-bottom: 1em;
 }
@@ -78,6 +78,11 @@ li {
   border-radius: 0px;
   background-color: lightgrey;
   color: blue;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
 }
 
 
@@ -181,7 +186,14 @@ main{
 /* ### TODO ### Styles for Discovery component */
 
 /* ... your code here ... */
+.discovery__wrapper {
+  flex-wrap: wrap;
+}
 
+.discovery__taglist,
+.discovery__map {
+  flex: 1 1 300px;
+}
 
 /* ### TODO ### Styles for Footer Component */
 
@@ -193,4 +205,19 @@ footer{
 
 /* ### TODO ### Media Queries */
 
-/* ... your code here ... */
+@media (max-width: 600px) {
+  .main.row {
+    flex-direction: column;
+  }
+
+  .col-4,
+  .col-8 {
+    width: 100%;
+  }
+
+  .discovery__wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+}
