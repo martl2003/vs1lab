@@ -46,6 +46,46 @@ a {
 
 /* ### TODO ### Styles for other HTML elements */
 
+#tag-form label, .discovery__search label{
+  color: grey;
+  display: block;
+  margin-bottom: 1em;
+}
+
+fieldset{
+  padding: 1em;
+  margin-top: 0.5em;
+}
+
+.tagging input, .discovery input{
+  padding: 0.5em;
+  border: 0.1em solid grey;
+  width: clamp(100px, 40%, 100%);
+  display: block;
+  margin-bottom: 1em;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+li {
+  border: 1px solid grey;
+  padding: 0.5em;
+  margin-bottom: 0.5em;
+  border-radius: 0px;
+  background-color: lightgrey;
+  color: blue;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+
 /* ... your code here ... */
 
 
@@ -136,13 +176,24 @@ main{
 
 /* ### TODO ### Styles for Tagging component */
 
-/* ... your code here ... */
+
+
+#longitude_input, #latitude_input {
+  background: gainsboro;
+}
 
 
 /* ### TODO ### Styles for Discovery component */
 
 /* ... your code here ... */
+.discovery__wrapper {
+  flex-wrap: wrap;
+}
 
+.discovery__taglist,
+.discovery__map {
+  flex: 1 1 300px;
+}
 
 /* ### TODO ### Styles for Footer Component */
 
@@ -154,4 +205,19 @@ footer{
 
 /* ### TODO ### Media Queries */
 
-/* ... your code here ... */
+@media (max-width: 600px) {
+  .main.row {
+    flex-direction: column;
+  }
+
+  .col-4,
+  .col-8 {
+    width: 100%;
+  }
+
+  .discovery__wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+}
