@@ -35,10 +35,10 @@
             <form id="tag-form" action="/tagging" method="post">
                 <fieldset>
                     <legend> Add a new Geotag:</legend>
-                <label for="latitude_input"> Latitude:</label>
-                <input type="text" id="latitude_input" readonly/>
-                <label for="longitude_input"> Longitude:</label>
-                <input type="text" id="longitude_input" readonly/>
+                <label for="latitude_input_tagging"> Latitude:</label>
+                <input type="text" id="latitude_input_tagging" readonly/>
+                <label for="longitude_input_tagging"> Longitude:</label>
+                <input type="text" id="longitude_input_tagging" readonly/>
                 <label for="name_input"> Name:</label>
                 <input type="text" id="name_input" required maxlength="10" placeholder="e.g. Central Berlin"/>
                 <label for="hashtag_input"> Hashtag:</label>
@@ -60,8 +60,8 @@
                     <legend> Search:</legend>
                 <label for="searchterm_input"> Searchterm:</label>
                 <input type="text" id="searchterm_input" size="20" placeholder="e.g. Berlin"/>
-                <input type="hidden" id="latitude_input"/>
-                <input type="hidden" id="longitude_input"/> 
+                <input type="hidden" id="latitude_input_discovery"/>
+                <input type="hidden" id="longitude_input_discovery"/> 
                 <input type="submit" value="Search"/>
                 <!-- ... your code here ... -->
                 </fieldset>

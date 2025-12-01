@@ -124,6 +124,35 @@ function updateLocation() {
         console.log("Latitude:", helper.latitude);
         console.log("Longitude:", helper.longitude);
 
+        // Tagging form inputs
+        const latTagging = document.getElementById("latitude_input_tagging");
+        const lonTagging = document.getElementById("longitude_input_tagging");
+
+        // Discovery form hidden inputs
+        const latDiscovery = document.getElementById("latitude_input_discovery");
+
+        const lonDiscovery = document.getElementById("longitude_input_discovery");
+
+
+        latTagging.value = helper.latitude;
+        lonTagging.value = helper.longitude;
+
+        latDiscovery.value = helper.latitude;
+        lonDiscovery.value = helper.longitude;
+
+
+        //Position darstellen auf Map
+        const mapManager = new MapManager();
+        mapManager.initMap(helper.latitude, helper.longitude);
+        mapManager.updateMarkers(helper.latitude, helper.longitude);
+
+        //Platzhalterbild und text entfernen
+        const mapImg = document.getElementById("mapView");
+        const mapContainer = document.getElementById("map");
+        mapImg.remove();
+
+        const mapLabel = mapContainer.querySelector("span");
+        mapLabel.remove();
     });
 }
 updateLocation();
