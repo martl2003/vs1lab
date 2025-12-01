@@ -34,15 +34,15 @@
             <!-- ############### VS1Lab 1a Form 1 Start -->
             <form id="tag-form" action="/tagging" method="post">
                 <fieldset>
-                    <legend> Tagging:</legend>
+                    <legend> Add a new Geotag:</legend>
                 <label for="latitude_input"> Latitude:</label>
-                <input type="text" id="latitude_input" />
+                <input type="text" id="latitude_input" readonly/>
                 <label for="longitude_input"> Longitude:</label>
-                <input type="text" id="longitude_input" />
+                <input type="text" id="longitude_input" readonly/>
                 <label for="name_input"> Name:</label>
-                <input type="text" id="name_input" required placeholder="e.g. Central Berlin"/>
+                <input type="text" id="name_input" required maxlength="10" placeholder="e.g. Central Berlin"/>
                 <label for="hashtag_input"> Hashtag:</label>
-                <input type="text" id="hashtag_input" pattern="^#.*" placeholder="e.g. #ber"/>
+                <input type="text" id="hashtag_input" pattern="^#.*" maxlength="11" placeholder="e.g. #ber"/>
                 <input class="confirm" type="submit" value="Add Tag"/>
                 <!-- ... your code here ... -->
                 </fieldset>
@@ -57,7 +57,7 @@
             <!-- ############### VS1Lab 1a Form 2 Start -->
             <form class="discovery__search" id="discoveryFilterForm" action="/discovery" method="post">
                 <fieldset>
-                    <legend> Discovery:</legend>
+                    <legend> Search:</legend>
                 <label for="searchterm_input"> Searchterm:</label>
                 <input type="text" id="searchterm_input" size="20" placeholder="e.g. Berlin"/>
                 <input type="hidden" id="latitude_input"/>
