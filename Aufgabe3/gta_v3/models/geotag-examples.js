@@ -32,13 +32,13 @@ class GeoTagExamples {
     }
 }
 
-/* ✅ EIN GeoTagStore */
+
 const store = new GeoTagStore();
 
-/* ✅ Beispieldaten einfügen */
+
 GeoTagExamples.tagList.forEach(t => {
     store.addGeoTag(new GeoTag(t[0], t[1], t[2], t[3]));
 });
 
-/* ✅ NUR DEN STORE EXPORTIEREN */
+
 module.exports = store;
