@@ -44,7 +44,7 @@ const GeoTagStore = require('../models/geotag-store');
 const store = require('../models/geotag-examples');
 
 router.get('/', (req, res) => {
-    res.render('index', { taglist: [], lat: '', lon: '' });
+    res.render('index', { taglist: store._geoTags, lat: '', lon: '' });
 });
 
 /**
