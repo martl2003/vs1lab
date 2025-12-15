@@ -157,32 +157,4 @@ function updateLocation() {
 }
 
 // Wait for the page to fully load its DOM content, then call updateLocation
- document.addEventListener('DOMContentLoaded', () => {
-    const mapManager = new MapManager('map');
-
-    function updateLocation() {
-        const latTag = document.getElementById('latitude_input_tagging');
-        const lonTag = document.getElementById('longitude_input_tagging');
-
-        if (latTag.value && lonTag.value) {
-            const tagsJSON = document.getElementById('map').dataset.tags;
-            const tags = tagsJSON ? JSON.parse(tagsJSON) : [];
-            mapManager.updateMarkers(
-                { latitude: latTag.value, longitude: lonTag.value },
-                tags
-            );
-            return;
-        }
-
-        LocationHelper.findLocation(pos => {
-            latTag.value = pos.latitude;
-            lonTag.value = pos.longitude;
-            document.getElementById('latitude_input_discovery').value = pos.latitude;
-            document.getElementById('longitude_input_discovery').value = pos.longitude;
-            mapManager.initMap(pos.latitude, pos.longitude);
-            mapManager.updateMarkers(pos.latitude, pos.longitude, tags);
-        });
-    }
-
-    updateLocation();
-});
+document.addEventListener('DOMContentLoaded', updateLocation);
