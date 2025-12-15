@@ -23,7 +23,7 @@
  * - The proximity constrained is the same as for 'getNearbyGeoTags'.
  * - Keyword matching should include partial matches from name or hashtag fields. 
  */
-class InMemoryGeoTagStore{
+class GeoTagStore{
 
 
         constructor() {
@@ -31,7 +31,7 @@ class InMemoryGeoTagStore{
     }
     // TODO: ... your code here ...
     #tags = [];
-    #RADIUS = 0.01; // ca. 1km
+    #RADIUS = 1; // ca. 1km
 
     addGeoTag(tag) {
         this.#tags.push(tag);
@@ -57,4 +57,4 @@ class InMemoryGeoTagStore{
 
 }
 
-module.exports = InMemoryGeoTagStore
+module.exports = GeoTagStore
