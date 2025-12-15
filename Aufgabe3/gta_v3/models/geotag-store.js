@@ -25,6 +25,10 @@
  */
 class InMemoryGeoTagStore{
 
+
+        constructor() {
+        this._geoTags = [];
+    }
     // TODO: ... your code here ...
     #tags = [];
     #RADIUS = 0.01; // ca. 1km
@@ -46,7 +50,7 @@ class InMemoryGeoTagStore{
 
     searchNearbyGeoTags(lat, lon, keyword) {
         return this.getNearbyGeoTags(lat, lon).filter(t =>
-            t.name.includes(keyword) || t.hashtag.includes(keyword)
+            t.name.toLowerCase().includes(keyword) || t.hashtag.toLowerCase().includes(keyword)
         );
     }
 
