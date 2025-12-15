@@ -179,7 +179,8 @@ function updateLocation() {
             lonTag.value = pos.longitude;
             document.getElementById('latitude_input_discovery').value = pos.latitude;
             document.getElementById('longitude_input_discovery').value = pos.longitude;
-            mapManager.updateMarkers(pos);
+            mapManager.initMap(pos.latitude, pos.longitude);
+            mapManager.updateMarkers(pos.latitude, pos.longitude, tags);
         });
     }
 
