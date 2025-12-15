@@ -74,10 +74,10 @@ router.get('/', (req, res) => {
 // TODO: ... your code here ...
 router.post('/tagging', (req, res) => {
 
-  const { name, latitude_input_tagging, longitude_input_tagging, radius, hashtag } = req.body;
+  const { name, lat, lng, radius, hashtag } = req.body;
 
-  const latitude = Number(latitude_input_tagging);
-  const longitude = Number(longitude_input_tagging);
+  const latitude = Number(lat);
+  const longitude = Number(lng);
 
   // create new GeoTag
   const geoTag = new GeoTag(
@@ -100,8 +100,8 @@ router.post('/tagging', (req, res) => {
   // render result
   res.render('index', { 
     taglist: result,
-    lat: latitude_input_tagging,
-    lng: longitude_input_tagging });
+    lat: lat,
+    lng: lng });
 });
 /**
  * Route '/discovery' for HTTP 'POST' requests.
