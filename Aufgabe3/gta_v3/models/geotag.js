@@ -11,8 +11,15 @@
  */
 class GeoTag {
 
-    // TODO: ... your code here ...
-    
+    constructor({ id, title, description, lat, lng, createdAt }) {
+    this.id = id;
+    this.title = title;
+    this.description = description;
+    this.lat = Number(lat);
+    this.lng = Number(lng);
+    this.createdAt = createdAt || new Date();
 }
+}
+
 
 module.exports = GeoTag;

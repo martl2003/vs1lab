@@ -4,7 +4,7 @@
  * This script is a template for exercise VS1lab/Aufgabe3
  * Complete all TODOs in the code documentation.
  */
-
+const GeoTagStore = require('./geotag-store');
 /**
  * A class representing example geoTags at HKA
  * 
@@ -15,6 +15,18 @@ class GeoTagExamples {
     /**
      * Provides some geoTag data
      */
+        static populate(store) {
+        GeoTagExamples.tagList.forEach(entry => {
+            const [name, lat, lng, hashtag] = entry;
+
+            store.addGeoTag({
+                name: name,
+                lat: lat,
+                lng: lng,
+                hashtags: hashtag
+            });
+        });
+    }
     static get tagList() {
         return [
             ['Castle', 49.013790, 8.404435, '#sight'],

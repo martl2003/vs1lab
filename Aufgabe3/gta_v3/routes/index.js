@@ -41,9 +41,20 @@ const GeoTagStore = require('../models/geotag-store');
  */
 
 // TODO: extend the following route example if necessary
+const GeoTagExamples = require('../models/geotag-examples');
+const store = new GeoTagStore();
+GeoTagExamples.populate(store);
+
+
 router.get('/', (req, res) => {
-  res.render('index', { taglist: [] })
+  res.render('index', { 
+    taglist: store._geoTags,
+    lat: '',
+    lng: '',})
 });
+
+
+
 
 /**
  * Route '/tagging' for HTTP 'POST' requests.
@@ -61,7 +72,37 @@ router.get('/', (req, res) => {
  */
 
 // TODO: ... your code here ...
+router.post('/tagging', (req, res) => {
 
+  const { name, latitude_input_tagging, longitude_input_tagging, radius, hashtag } = req.body;
+
+  const latitude = Number(latitude_input_tagging);
+  const longitude = Number(longitude_input_tagging);
+
+  // create new GeoTag
+  const geoTag = new GeoTag(
+    name,
+    latitude,
+    longitude,
+    hashtag
+  );
+
+   // store new tag
+  store.addGeoTag(geoTag);
+
+
+  // find nearby tags
+  const result = store.getNearbyGeoTags(
+    { lat: latitude, lng: longitude },
+    500
+  );
+
+  // render result
+  res.render('index', { 
+    taglist: result,
+    lat: latitude_input_tagging,
+    lng: longitude_input_tagging });
+});
 /**
  * Route '/discovery' for HTTP 'POST' requests.
  * (http://expressjs.com/de/4x/api.html#app.post.method)
@@ -77,6 +118,33 @@ router.get('/', (req, res) => {
  * To this end, "GeoTagStore" provides methods to search geotags 
  * by radius and keyword.
  */
+router.post('/discovery', (req, res) => {
+
+  const { lat, lng, radius, keyword } = req.body;
+
+  let result;
+
+  const latitude = Number(lat);
+  const longitude = Number(lng);
+
+  if (keyword && keyword.trim() !== '') {
+    result = store.searchNearbyGeoTags(
+      { lat: latitude, lng: longitude },
+      500,
+      keyword
+    );
+  } else {
+    result = store.getNearbyGeoTags(
+      { lat: latitude, lng: longitude },
+      500
+    );
+  }
+
+  res.render('index', { 
+    taglist : result,
+    lat : lat,
+    lng : lng });
+});
 
 // TODO: ... your code here ...
 

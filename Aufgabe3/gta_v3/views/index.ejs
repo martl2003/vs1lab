@@ -36,13 +36,13 @@
                 <fieldset>
                     <legend> Add a new Geotag:</legend>
                 <label for="latitude_input_tagging"> Latitude:</label>
-                <input type="text" id="latitude_input_tagging" readonly/>
+                <input type="text"id="latitude_input_tagging" name="lat" value="<%= lat %>"readonly />
                 <label for="longitude_input_tagging"> Longitude:</label>
-                <input type="text" id="longitude_input_tagging" readonly/>
+                <input type="text" id="longitude_input_tagging" name="lng" value="<%= lng %>" readonly/>
                 <label for="name_input"> Name:</label>
-                <input type="text" id="name_input" required maxlength="10" placeholder="e.g. Central Berlin"/>
+                <input type="text" id="name_input" name="name" required maxlength="10" placeholder="e.g. Central Berlin"/>
                 <label for="hashtag_input"> Hashtag:</label>
-                <input type="text" id="hashtag_input" pattern="^#.*" maxlength="11" placeholder="e.g. #ber"/>
+                <input type="text" id="hashtag_input" name="hashtag" pattern="^#.*" maxlength="11" placeholder="e.g. #ber"/>
                 <input class="confirm" type="submit" value="Add Tag"/>
                 <!-- ... your code here ... -->
                 </fieldset>
@@ -59,9 +59,9 @@
                 <fieldset>
                     <legend> Search:</legend>
                 <label for="searchterm_input"> Searchterm:</label>
-                <input type="text" id="searchterm_input" size="20" placeholder="e.g. Berlin"/>
-                <input type="hidden" id="latitude_input_discovery"/>
-                <input type="hidden" id="longitude_input_discovery"/> 
+                <input type="text" id="searchterm_input" name="keyword" size="20" placeholder="e.g. Berlin"/>
+                <input type="hidden" id="latitude_input_discovery"name="lat" value="<%= lat %>"/>
+                <input type="hidden" id="longitude_input_discovery"name="lng" value="<%= lng %>"/> 
                 <input type="submit" value="Search"/>
                 <!-- ... your code here ... -->
                 </fieldset>
@@ -73,7 +73,7 @@
                 <div class="discovery__taglist">
                     <ul class="discovery__results" id="discoveryResults">
 <% if (taglist !== undefined) taglist.forEach(function(gtag) { %>
-    <li><%= gtag.name %> ( <%= gtag.latitude %>,<%= gtag.longitude %>) <%= gtag.hashtag %> </li>
+    <li><%= gtag.name %> ( <%= gtag.lat %>,<%= gtag.lng %>) <%= gtag.hashtag %> </li>
 <% }); %>
                     </ul>
                 </div>
