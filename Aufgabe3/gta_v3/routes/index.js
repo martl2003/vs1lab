@@ -41,8 +41,10 @@ const GeoTagStore = require('../models/geotag-store');
  */
 
 // TODO: extend the following route example if necessary
+const store = require('../models/geotag-examples');
+
 router.get('/', (req, res) => {
-  res.render('index', { taglist: [] })
+    res.render('index', { taglist: [], lat: '', lon: '' });
 });
 
 /**
@@ -61,6 +63,22 @@ router.get('/', (req, res) => {
  */
 
 // TODO: ... your code here ...
+router.post('/tagging', (req, res) => {
+    const { latitude, longitude, name, hashtag } = req.body;
+
+    const tag = new GeoTag(name, latitude, longitude, hashtag);
+    store.addGeoTag(tag);
+
+    const results = store.getNearbyGeoTags(latitude, longitude);
+
+    res.render('index', {
+        taglist: results,
+        lat: latitude,
+        lon: longitude
+    });
+});
+
+
 
 /**
  * Route '/discovery' for HTTP 'POST' requests.
@@ -79,5 +97,18 @@ router.get('/', (req, res) => {
  */
 
 // TODO: ... your code here ...
+router.post('/discovery', (req, res) => {
+    const { latitude, longitude, searchterm } = req.body;
+
+    const results = searchterm
+        ? store.searchNearbyGeoTags(latitude, longitude, searchterm)
+        : store.getNearbyGeoTags(latitude, longitude);
+
+    res.render('index', {
+        taglist: results,
+        lat: latitude,
+        lon: longitude
+    });
+});
 
 module.exports = router;
