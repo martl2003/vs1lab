@@ -36,13 +36,13 @@
                 <fieldset>
                     <legend> Add a new Geotag:</legend>
                 <label for="latitude_input_tagging"> Latitude:</label>
-                <input type="text" id="latitude_input_tagging" readonly/>
+                <input type="text" id="latitude_input_tagging" name="latitude" value="<%= lat %>" readonly/>
                 <label for="longitude_input_tagging"> Longitude:</label>
-                <input type="text" id="longitude_input_tagging" readonly/>
+                <input type="text" id="longitude_input_tagging" name="longitude" value="<%= lon %>" readonly/>
                 <label for="name_input"> Name:</label>
-                <input type="text" id="name_input" required maxlength="10" placeholder="e.g. Central Berlin"/>
+                <input type="text" id="name_input" name="name" required maxlength="10" placeholder="e.g. Central Berlin"/>
                 <label for="hashtag_input"> Hashtag:</label>
-                <input type="text" id="hashtag_input" pattern="^#.*" maxlength="11" placeholder="e.g. #ber"/>
+                <input type="text" id="hashtag_input" name="hashtag" pattern="^#.*" maxlength="11" placeholder="e.g. #ber"/>
                 <input class="confirm" type="submit" value="Add Tag"/>
                 <!-- ... your code here ... -->
                 </fieldset>
@@ -60,9 +60,9 @@
                     <legend> Search:</legend>
                 <label for="searchterm_input"> Searchterm:</label>
                 <input type="text" id="searchterm_input" size="20" placeholder="e.g. Berlin"/>
-                <input type="hidden" id="latitude_input_discovery"/>
-                <input type="hidden" id="longitude_input_discovery"/> 
-                <input type="submit" value="Search"/>
+                <input type="hidden" id="latitude_input_discovery" name="latitude" value="<%= lat %>"/>
+                <input type="hidden" id="longitude_input_discovery" name="longitude" value="<%= lon %>" /> 
+                <input type="submit" value="Search" name="Search"/>
                 <!-- ... your code here ... -->
                 </fieldset>
                 
@@ -78,7 +78,7 @@
                     </ul>
                 </div>
 
-                <div id="map" class="discovery__map col-8">
+                <div id="map" data-tags='<%= JSON.stringify(taglist) %>' class="discovery__map col-8">
                     <img src="./images/mapview.jpg" alt="a map with locations" id="mapView" /><br>
                     <span>Result map</span>
                 </div>

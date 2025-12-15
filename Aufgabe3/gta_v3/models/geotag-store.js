@@ -26,6 +26,29 @@
 class InMemoryGeoTagStore{
 
     // TODO: ... your code here ...
+    #tags = [];
+    #RADIUS = 0.01; // ca. 1km
+
+    addGeoTag(tag) {
+        this.#tags.push(tag);
+    }
+
+    removeGeoTag(name) {
+        this.#tags = this.#tags.filter(t => t.name !== name);
+    }
+
+    getNearbyGeoTags(lat, lon) {
+        return this.#tags.filter(t =>
+            Math.abs(t.latitude - lat) <= this.#RADIUS &&
+            Math.abs(t.longitude - lon) <= this.#RADIUS
+        );
+    }
+
+    searchNearbyGeoTags(lat, lon, keyword) {
+        return this.getNearbyGeoTags(lat, lon).filter(t =>
+            t.name.includes(keyword) || t.hashtag.includes(keyword)
+        );
+    }
 
 }
 

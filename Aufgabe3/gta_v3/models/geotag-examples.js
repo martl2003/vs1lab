@@ -11,10 +11,10 @@
  * TODO: populate your InMemoryGeoTagStore with these tags
  * 
  */
+const GeoTag = require('./geotag');
+const GeoTagStore = require('./geotag-store');
+
 class GeoTagExamples {
-    /**
-     * Provides some geoTag data
-     */
     static get tagList() {
         return [
             ['Castle', 49.013790, 8.404435, '#sight'],
@@ -32,4 +32,13 @@ class GeoTagExamples {
     }
 }
 
-module.exports = GeoTagExamples;
+/* ✅ EIN GeoTagStore */
+const store = new GeoTagStore();
+
+/* ✅ Beispieldaten einfügen */
+GeoTagExamples.tagList.forEach(t => {
+    store.addGeoTag(new GeoTag(t[0], t[1], t[2], t[3]));
+});
+
+/* ✅ NUR DEN STORE EXPORTIEREN */
+module.exports = store;
