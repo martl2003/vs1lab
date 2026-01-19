@@ -138,9 +138,30 @@ router.post('/discovery', (req, res) => {
 
 // TODO: ... your code here ...
 router.get("/api/geotags", (req, res) => {
-    res.json(store._geoTags);
+    const { latitude, longitude, searchterm } = req.query;
 
+    let results;
+
+    if (latitude && longitude) {
+        // Umwandeln in Zahlen
+        const lat = parseFloat(latitude);
+        const lon = parseFloat(longitude);
+
+        if (searchterm) {
+            results = store.searchNearbyGeoTags(lat, lon, searchterm);
+        } else {
+            results = store.getNearbyGeoTags(lat, lon);
+        }
+    } else if (searchterm) {
+        // Keine Koordinaten, nur Suche nach Keyword
+        results = store.searchGeoTags(searchterm);
+    } else {
+        results = store._geoTags; // alle Tags
+    }
+
+    res.json(results);
 });
+
 
 /**
  * Route '/api/geotags' for HTTP 'POST' requests.
