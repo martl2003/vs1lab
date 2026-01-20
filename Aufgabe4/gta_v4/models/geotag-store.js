@@ -32,7 +32,7 @@ class InMemoryGeoTagStore{
     }
     
     #tags = [];      // private Array
-    #RADIUS = 0.01;  // private Konstante
+    #RADIUS = 0.1;  // private Konstante
 
     addGeoTag(tag) {
         tag.id = this._nextId++;

@@ -1,3 +1,5 @@
+import { MapManager } from './map-manager.js';
+import { LocationHelper } from './location-helper.js';
 // File origin: VS1LAB A2
 
 /* eslint-disable no-unused-vars */
@@ -8,7 +10,6 @@
 // The console window must be opened explicitly in the browser.
 // Try to find this output in the browser...
 console.log("The geoTagging script is going to start...");
-
 
 // Wait for the page to fully load its DOM content, then call updateLocation
 document.addEventListener('DOMContentLoaded', () => {
@@ -41,6 +42,12 @@ document.addEventListener('DOMContentLoaded', () => {
         const response = await fetch(url, { method: "GET" });
         const results = await response.json();
 
+        mapManager.updateMarkers(
+            dataObj.latitude,
+            dataObj.longitude,
+            results
+        );
+
         console.log("Ergebnisse:", results);
     });
 
@@ -54,13 +61,15 @@ document.addEventListener('DOMContentLoaded', () => {
         const tagsJSON = document.getElementById('map').dataset.tags;
         if (tagsJSON) tags = JSON.parse(tagsJSON);
 
-        if (latTag.value && lonTag.value) {
-            mapManager.initMap(latTag.value, lonTag.value);
-            mapManager.updateMarkers(latTag.value, lonTag.value, tags);
-            return;
-        }
+        // if (latTag.value && lonTag.value) {
+        //     mapManager.initMap(latTag.value, lonTag.value);
+        //     mapManager.updateMarkers(latTag.value, lonTag.value, tags);
+        //     return;
+        // }
 
         LocationHelper.findLocation(pos => {
+            console.log("Geolocation API is being called");
+            
             latTag.value = pos.latitude;
             lonTag.value = pos.longitude;
 
