@@ -14,6 +14,8 @@ console.log("The geoTagging script is going to start...");
 // Wait for the page to fully load its DOM content, then call updateLocation
 document.addEventListener('DOMContentLoaded', () => {
 
+    const mapManager = new MapManager('map');
+
     const tagForm = document.getElementById("tag-form");
     tagForm.addEventListener("submit", async (e) => {
         e.preventDefault();
@@ -48,10 +50,18 @@ document.addEventListener('DOMContentLoaded', () => {
             results
         );
 
+        const ul = document.getElementById('discoveryResults');
+        ul.innerHTML = ''; 
+        results.forEach(gtag => {
+            const li = document.createElement('li');
+            li.textContent = `${gtag.name} (${gtag.latitude},${gtag.longitude}) ${gtag.hashtag}`;
+            ul.appendChild(li);
+        });
+
         console.log("Ergebnisse:", results);
     });
 
-    const mapManager = new MapManager('map');
+    
 
     function updateLocation() {
         const latTag = document.getElementById('latitude_input_tagging');
@@ -61,11 +71,11 @@ document.addEventListener('DOMContentLoaded', () => {
         const tagsJSON = document.getElementById('map').dataset.tags;
         if (tagsJSON) tags = JSON.parse(tagsJSON);
 
-        // if (latTag.value && lonTag.value) {
-        //     mapManager.initMap(latTag.value, lonTag.value);
-        //     mapManager.updateMarkers(latTag.value, lonTag.value, tags);
-        //     return;
-        // }
+        if (latTag.value && lonTag.value) {
+             mapManager.initMap(latTag.value, lonTag.value);
+             mapManager.updateMarkers(latTag.value, lonTag.value, tags);
+             return;
+        }
 
         LocationHelper.findLocation(pos => {
             console.log("Geolocation API is being called");
@@ -82,4 +92,4 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     updateLocation();
-});
+}); 

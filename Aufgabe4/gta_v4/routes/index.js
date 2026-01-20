@@ -143,7 +143,6 @@ router.get("/api/geotags", (req, res) => {
     let results;
 
     if (latitude && longitude) {
-        // Umwandeln in Zahlen
         const lat = parseFloat(latitude);
         const lon = parseFloat(longitude);
 
@@ -153,10 +152,9 @@ router.get("/api/geotags", (req, res) => {
             results = store.getNearbyGeoTags(lat, lon);
         }
     } else if (searchterm) {
-        // Keine Koordinaten, nur Suche nach Keyword
         results = store.searchGeoTags(searchterm);
     } else {
-        results = store._geoTags; // alle Tags
+        results = store.getAllGeoTags();
     }
 
     res.json(results);
